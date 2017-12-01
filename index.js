@@ -1,34 +1,36 @@
+const express = require('express')
+const bodyParser = require('body-parser')
+const  OwnerService = require('./services/owner-service')
 
-/*const red = require("ansi-red");*/
+const app = express()
 
-const Student = require('./student');
-const Teacher = require('./teacher');
-const Course = require('./course');
-const Person = require('./person');
-const Database = require('./database');
-console.log("Hello word!");
+app.set('view engine', 'pug')
 
+app.use(bodyParser.json())
 
+//app.get('/', async(req, res, next) => {
+  //res.render('index')
+  //res.sendFile(__dirname + '/index.html')
+ // res.send(await OwnerService.findAll())
+//})
 
-const alina = new Teacher("Alina", 37);
-const mihai = new Student('Mihai Miaha', 23);
-const course = new Course('English', alina);
-course.addStudent(mihai);
+app.get('/owner', async(req, res, next) => {
+  const owners = await OwnerService.findAll()
+  res.render('owner', {owners})
+})
+app.get('/owner/:id', async(req, res, next) => {
+  const owner = await OwnerService.find(req.params.id)
+ res.send(owner)
+ })
+app.post('/owner', async(req, res, next) => {
+  const owner = await OwnerService.add(req.body)
+  res.send(owner)
+})
+app.delete('/owner/:id', async(req, res, next) => {
+ await OwnerService.del(req.params.id)
+res.send()
+})
 
-const instructor = [alina, mihai]
-
-
-Database.save(instructor);
-Database.save(course);
-
-//const loadedFile = Database.load();
-//console.log(loadedFile[0].age);
-
-
-/* folosim Database.save(instructor) pt ca sa salvam personele ~save~ */
-
-/*console.log(red(alina.name), alina.age);*/
-
-/* folosim asi-red librarie de js pentru a colora textul in rosu, 1-instalam ansi-red   npm i ansi-red --save 
-iar apoi folosim o constanta de ex const red = require("ansi-red"); ii spunem sa importe
-astfel incat sa o puteam folosi) */
+app.listen(3000, () => {
+  console.log('server listening.')
+})

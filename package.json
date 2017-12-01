@@ -9,6 +9,9 @@
   "author": "alina ghetler",
   "license": "ISC",
   "dependencies": {
-    "ansi-red": "^0.1.1"
+    "ansi-red": "^0.1.1",
+    "body-parser": "^1.18.2",
+    "next": "^4.1.4",
+    "pug": "^2.0.0-rc.4"
   }
 }
