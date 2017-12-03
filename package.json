@@ -4,14 +4,21 @@
   "description": "crash ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava"
   },
   "author": "alina ghetler",
   "license": "ISC",
   "dependencies": {
     "ansi-red": "^0.1.1",
     "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.5",
+    "mongoose-sequence": "^4.0.1",
     "next": "^4.1.4",
     "pug": "^2.0.0-rc.4"
+  },
+  "devDependencies": {
+    "ava": "^0.24.0",
+    "supertest": "^3.0.0"
   }
 }
