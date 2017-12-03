@@ -12,6 +12,11 @@ router.get('/:id', async (req, res, next) => {
     res.send(owner)
 })
 
+router.get('/:id/pet', async (req, res, next) => {
+    const owner = await OwnerService.findOwnerPets(req.params.id)
+    res.send(owner)
+})
+
 router.post('/', async (req, res, next) => {
     const owner = await OwnerService.add(req.body)
     res.send(owner)

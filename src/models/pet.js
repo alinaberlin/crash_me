@@ -5,8 +5,8 @@ const PetSchema = mongoose.Schema({
   type: String,
   name: String,
   gender: String,
-  sterile: boolean,
-  ownerId: number
+  sterile: Boolean,
+  ownerId: Number
 })
 
 PetSchema.plugin(AutoIncrement, {inc_field: 'id'})
