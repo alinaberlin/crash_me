@@ -9,5 +9,5 @@ const PetSchema = mongoose.Schema({
   ownerId: Number
 })
 
-PetSchema.plugin(AutoIncrement, {inc_field: 'id'})
+//PetSchema.plugin(AutoIncrement, {inc_field: 'id'})
 module.exports = mongoose.model('Pet', PetSchema)

@@ -7,5 +7,5 @@ const PetSitterSchema = mongoose.Schema({
   address: String
 })
 
-PetSchema.plugin(AutoIncrement, {inc_field: 'id'})
+//PetSitterSchema.plugin(AutoIncrement, {inc_field: 'id'})
 module.exports = mongoose.model('PetSitter', PetSitterSchema)

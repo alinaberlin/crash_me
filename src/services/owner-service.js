@@ -31,5 +31,7 @@ module.exports = {
   findAll,
   find,
   add, 
-  del
+  del,
+  addPet,
+  findOwnerPets
 }
