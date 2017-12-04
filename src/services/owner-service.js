@@ -1,7 +1,6 @@
 const fs = require('fs')
 const Owner = require('../models/owner')
-const allOwners = [];
-
+const Pet = require('../models/pet')
 
 async function findAll() {
   return Owner.find()
@@ -9,6 +8,15 @@ async function findAll() {
 
 async function find(id) {
   return Owner.findOne({id})
+}
+
+async function findOwnerPets(id) {
+  return Pet.find({ownerId : id})
+}
+
+async function addPet(id, pet) {
+  pet.ownerId = id
+  return Pet.create(pet)
 }
 
 async function add(owner){
@@ -23,5 +31,7 @@ module.exports = {
   findAll,
   find,
   add, 
-  del
+  del,
+  addPet,
+  findOwnerPets
 }
