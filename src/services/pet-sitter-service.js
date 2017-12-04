@@ -6,7 +6,7 @@ async function findAll() {
 }
 
 async function find(id) {
-  return PetSitter.findOne({id})
+  return PetSitter.findOne({'sitterId': id})
 }
 
 async function add(petSitter){
@@ -14,7 +14,7 @@ async function add(petSitter){
 }
 
 async function del(id) {
-  return  PetSitter.remove({id})
+  return  PetSitter.remove({'sitterId': id})
 }
 
 module.exports = {

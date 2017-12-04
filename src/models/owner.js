@@ -6,10 +6,12 @@ const OwnerSchema = mongoose.Schema({
   age: Number,
   email: String,
   address :String,
-})
+},
+{ collection: 'happypet' }
+)
 // we need to import moongoose and also to make a <Schema> to tell our db what structure shoul it find,
 //mongodb is not a relational db, this means is not strict as SQL, who is a relational db.
-OwnerSchema.plugin(AutoIncrement, {inc_field: 'id'})
+OwnerSchema.plugin(AutoIncrement, {inc_field: 'id', model: 'Owner'})
 module.exports = mongoose.model('Owner', OwnerSchema)
 
 

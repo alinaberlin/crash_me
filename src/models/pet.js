@@ -7,7 +7,9 @@ const PetSchema = mongoose.Schema({
   gender: String,
   sterile: Boolean,
   ownerId: Number
-})
+},
+{ collection: 'happypet' }
+)
 
-//PetSchema.plugin(AutoIncrement, {inc_field: 'id'})
+PetSchema.plugin(AutoIncrement, {inc_field: 'petId', model: 'Pet'})
 module.exports = mongoose.model('Pet', PetSchema)
