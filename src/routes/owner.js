@@ -4,7 +4,7 @@ const  OwnerService = require('../services/owner-service')
 
 router.get('/', async (req, res, next) => {
     const owners = await OwnerService.findAll()
-    res.render('owner', { owners })
+    res.send(owner)
 })
 
 router.get('/:id', async (req, res, next) => {
@@ -13,13 +13,18 @@ router.get('/:id', async (req, res, next) => {
 })
 
 router.get('/:id/pet', async (req, res, next) => {
-    const owner = await OwnerService.findOwnerPets(req.params.id)
-    res.send(owner)
+    const pets = await OwnerService.findOwnerPets(req.params.id)
+    res.send(pets)
 })
 
 router.post('/', async (req, res, next) => {
     const owner = await OwnerService.add(req.body)
     res.send(owner)
+})
+
+router.post('/:id/pet', async (req, res, next) => {
+    const pet = await OwnerService.addPet(req.params.id, req.body)
+    res.send(pet)
 })
 
 router.delete('/:id', async (req,

@@ -14,6 +14,11 @@ async function findOwnerPets(id) {
   return Pet.find({ownerId : id})
 }
 
+async function addPet(id, pet) {
+  pet.ownerId = id
+  return Pet.create(pet)
+}
+
 async function add(owner){
   return  Owner.create(owner)
 }
