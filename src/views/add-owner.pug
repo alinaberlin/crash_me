@@ -1,0 +1,37 @@
+extends layout
+
+block content   
+    h1 Add a new owner
+    form(method='POST', id='addOwnerForm')
+        #form-group
+            label Name:
+            input.form-control(name='name', type='text', id='name')
+        #form-group
+            label Email:
+            input.form-control(name='email', type='text', id='email')
+        #form-group
+            label Address:
+            input.form-control(name='address', type='text', id='address')
+        #form-group
+            label Age:
+            input.form-control(name='age', type='text', id='age')
+        br
+        input.btn.btn-primary(type='button',value='Submit', onclick='saveOwner()')
+
+block script
+    script.
+        function saveOwner() {
+                    axios.post('/owner', 
+                        {
+                            name: document.getElementById('name').value,
+                            email: document.getElementById('email').value,
+                            address: document.getElementById('address').value,
+                            age: document.getElementById('age').value
+                        },
+                        {headers: { 'Content-Type': ['application/json']}}
+                    )
+                    .then(function (response) {
+                        console.log(response);
+                        window.location.href = "/views/owner/view/" + response.data.id;
+                    })
+        }

@@ -1,0 +1,33 @@
+extends layout
+
+block content   
+    h1 Add a pet for owner with id #{ownerId}
+    form(method='POST', id='addPetForm')
+        #form-group
+            label Type:
+            input.form-control(name='type', type='text', id='type')
+        #form-group
+            label Name:
+            input.form-control(name='name', type='text', id='name')
+        #form-group
+            label Gender:
+            input.form-control(name='gender', type='text', id='gender')
+        br
+        input.btn.btn-primary(type='button',value='Submit', onclick='saveOwner()')
+
+block script
+    script.
+        function saveOwner() {
+                    axios.post('/owner/#{ownerId}/pet', 
+                        {
+                            name: document.getElementById('name').value,
+                            type: document.getElementById('type').value,
+                            gender: document.getElementById('gender').value
+                        },
+                        {headers: { 'Content-Type': ['application/json']}}
+                    )
+                    .then(function (response) {
+                        console.log(response);
+                        window.location.href = "/views/owner/view/#{ownerId}";
+                    })
+        }

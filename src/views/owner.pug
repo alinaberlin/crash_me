@@ -1,5 +1,17 @@
 extends layout
 
 block content
-     h1 the list of #{owners.length} the world
-     p #{owners.map(p => p.name)}
+     div(id='ownerDetails')
+
+block script
+    script.
+        axios.get('/owner/#{ownerId}')
+                    .then(function (response) {
+                        console.log(response);
+                        document.getElementById('ownerDetails').innerHTML = 
+                        '<p><strong>Name: </strong>' + response.data.name + '</p>' +
+                        '<p><strong>Address: </strong>' + response.data.address + '</p>' +
+                        '<p><strong>Email: </strong>' + response.data.email + '</p>' +
+                        '<p><a href="/views/owner/#{ownerId}/pet/add">Add Pet</a></p>'
+        })
+        
